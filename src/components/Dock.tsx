@@ -16,7 +16,7 @@ export default function Dock() {
       onMouseLeave={() => mouseX.set(Infinity)}
       className='dock-container'
     >
-      {[...Array(8).keys()].map((i) => (
+      {[...Array(2).keys()].map((i) => (
         <AppIcon mouseX={mouseX} key={i} />
       ))}
     </motion.div>

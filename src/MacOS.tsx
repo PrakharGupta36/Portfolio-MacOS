@@ -4,7 +4,7 @@ import { useSettings } from "./hooks/Settings";
 import "./styles/style.css";
 import { createGlobalStyle } from "styled-components";
 import Animated from "./utils/Animated";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface StyledHTMLProps {
   imageUrl: string;
@@ -23,14 +23,9 @@ const GlobalStyles = createGlobalStyle<StyledHTMLProps>`
 export default function MacOS() {
   const { backgroundImage } = useSettings();
 
-
-  useEffect(() => {
-    
-  },[])
-
   return (
     <>
-      <Animated/>
+      <Animated />
       <GlobalStyles imageUrl={backgroundImage} />
       <Navbar />
       <Dock />

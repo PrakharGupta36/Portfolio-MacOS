@@ -57,6 +57,14 @@ button {
   }
 }
 
+.mobile{
+  background-color: black;
+  color: white;
+  display: grid;
+  height: 100dvh;
+  place-items: center;
+}
+
 .modal {
   position: absolute;
   top: 50%;
