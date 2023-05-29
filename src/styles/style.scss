@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: SF Pro, monospace;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+a,
+button {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.animated {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  height: 100dvh;
+  width: 100vw;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
+
+  .grid {
+    display: grid;
+    gap: 2rem;
+    place-items: center;
+
+    .loading-bar {
+      width: 300%;
+      height: 4px;
+      background-color: #000000;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .progress {
+      width: 0%;
+      height: 100%;
+      border-radius: 10px;
+      background-color: #ffffff;
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  @include flex-center-center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  ul {
+    padding: 0;
+    list-style-type: none;
+    .clock {
+      .clock-container {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+.dock-container {
+  @include flex-center-center;
+  width: max-content;
+  margin: 0 auto;
+  gap: 0.75rem;
+  height: 38px;
+  border-radius: 3rem;
+  background-color: #777;
+  padding: 0.85rem 1.5rem;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .app-icon {
+    aspect-ratio: 1/1;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+  }
+}
