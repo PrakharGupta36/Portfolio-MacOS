@@ -1,13 +1,19 @@
 import { AiFillApple } from "react-icons/ai";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
+import { isMobile, isTablet } from "react-device-detect";
 
 export default function Animated() {
+  const isTouch = isMobile || isTablet;
   return (
     <section className='animated'>
       <div className='grid'>
         <AiFillApple size={60} />
         <LoadingBar />
+
+        {isTouch && (
+          <p> Open this website on a desktop/laptop for full experience </p>
+        )}
       </div>
     </section>
   );

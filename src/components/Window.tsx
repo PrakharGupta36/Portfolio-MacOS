@@ -1,8 +1,8 @@
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { GlobalState } from "../hooks/State";
 
-export default function Window({ children }: { children: any }) {
-  const { closeWindow } = GlobalState();
+export default function Window() {
+  const { closeWindow, content } = GlobalState();
 
   const controls: {
     id: number;
@@ -30,9 +30,6 @@ export default function Window({ children }: { children: any }) {
     },
   ];
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
   return (
     <>
       <motion.main
@@ -44,7 +41,6 @@ export default function Window({ children }: { children: any }) {
           bottom: Infinity,
         }}
         dragMomentum={false}
-        style={{ x, y }}
         className='window'
       >
         <motion.section className='controls'>
@@ -60,7 +56,7 @@ export default function Window({ children }: { children: any }) {
             })}
           </ul>
         </motion.section>
-        <section className='content'>{children}</section>
+        {content}
       </motion.main>
     </>
   );

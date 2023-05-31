@@ -5,7 +5,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 import { dockData } from "../utils/Data";
 import { GlobalState } from "../hooks/State";
 
@@ -18,9 +18,6 @@ export default function Dock() {
       onMouseLeave={() => mouseX.set(Infinity)}
       className='dock-container'
     >
-      {/* {[...Array(2).keys()].map((i) => (
-        <AppIcon mouseX={mouseX} key={i} />
-      ))} */}
       {dockData.map((e) => {
         return <AppIcon props={e} mouseX={mouseX} key={e.id} />;
       })}
@@ -33,7 +30,7 @@ function AppIcon({
   props,
 }: {
   mouseX: MotionValue;
-  props: { id: number; label: string; img: string };
+  props: { id: number; label: string; img: string; content: ReactElement };
 }) {
   const [isHovered, setHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -64,7 +61,7 @@ function AppIcon({
   return (
     <motion.div
       ref={ref}
-      onClick={() => openWindow()}
+      onClick={() => openWindow(props.content)}
       style={{
         width,
         background: `url(${props.img}) no-repeat center center fixed`,

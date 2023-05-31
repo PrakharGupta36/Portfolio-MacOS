@@ -1,6 +1,5 @@
 import Dock from "./components/Dock";
 import Navbar from "./components/Navbar";
-import { useSettings } from "./hooks/Settings";
 import "./styles/style.css";
 import { createGlobalStyle } from "styled-components";
 import Animated from "./utils/Animated";
@@ -22,9 +21,7 @@ const GlobalStyles = createGlobalStyle<StyledHTMLProps>`
 `;
 
 export default function MacOS() {
-  const { backgroundImage } = useSettings();
-
-  const { window } = GlobalState();
+  const { window, backgroundImage } = GlobalState();
 
   return (
     <>
@@ -33,7 +30,7 @@ export default function MacOS() {
       <Navbar />
       <Dock />
 
-      {window && <Window children={<h1>Hello World</h1>} />}
+      {window && <Window />}
     </>
   );
 }
