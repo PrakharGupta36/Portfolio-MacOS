@@ -1,4 +1,4 @@
-import { PanInfo, motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { GlobalState } from "../hooks/State";
 
 export default function Window({ children }: { children: any }) {
@@ -32,14 +32,6 @@ export default function Window({ children }: { children: any }) {
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const handleDrag = (
-    _: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-  ) => {
-    x.set(info.point.x);
-    y.set(info.point.y);
-  };
 
   return (
     <>
