@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "react-modal": "^3.16.1",
+    "react-model": "^4.3.1",
     "styled-components": "^5.3.11",
     "zustand": "^4.3.8"
   },

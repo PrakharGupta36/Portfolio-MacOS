@@ -5,7 +5,9 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { dockData } from "../utils/Data";
+import { GlobalState } from "../hooks/State";
 
 export default function Dock() {
   let mouseX = useMotionValue(Infinity);
@@ -16,24 +18,72 @@ export default function Dock() {
       onMouseLeave={() => mouseX.set(Infinity)}
       className='dock-container'
     >
-      {[...Array(2).keys()].map((i) => (
+      {/* {[...Array(2).keys()].map((i) => (
         <AppIcon mouseX={mouseX} key={i} />
-      ))}
+      ))} */}
+      {dockData.map((e) => {
+        return <AppIcon props={e} mouseX={mouseX} key={e.id} />;
+      })}
     </motion.div>
   );
 }
 
-function AppIcon({ mouseX }: { mouseX: MotionValue }) {
-  let ref = useRef<HTMLDivElement>(null);
+function AppIcon({
+  mouseX,
+  props,
+}: {
+  mouseX: MotionValue;
+  props: { id: number; label: string; img: string };
+}) {
+  const [isHovered, setHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [40, 70, 40]);
-  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+  const widthSync = useTransform(distance, [-150, 0, 150], [40, 70, 40]);
 
-  return <motion.div ref={ref} style={{ width }} className='app-icon' />;
+  const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
+  const { openWindow } = GlobalState();
+
+  return (
+    <motion.div
+      ref={ref}
+      onClick={() => openWindow()}
+      style={{
+        width,
+        background: `url(${props.img}) no-repeat center center fixed`,
+        backgroundSize: "cover",
+      }}
+      className='app-icon'
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {isHovered && (
+        <motion.div
+          className='hover-label'
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+        >
+          {props.label}
+        </motion.div>
+      )}
+    </motion.div>
+  );
 }
