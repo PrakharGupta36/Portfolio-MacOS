@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 import Settings from "../apps/settings/Settings";
-import Canvas from "../apps/Canvas";
-
 interface DockItem {
   id: number;
   label: string;
