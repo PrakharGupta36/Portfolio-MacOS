@@ -56,12 +56,16 @@ function AppIcon({
     setHovered(false);
   };
 
-  const { openWindow } = GlobalState();
+  const { openSettings, window } = GlobalState();
 
   return (
     <motion.div
       ref={ref}
-      onClick={() => openWindow(props.content)}
+      onClick={() => {
+        if (!window.settings) {
+          openSettings(props.content);
+        } 
+      }}
       style={{
         width,
         background: `url(${props.img}) no-repeat center center fixed`,

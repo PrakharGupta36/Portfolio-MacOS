@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { GlobalState } from "../hooks/State";
 
 export default function Window() {
-  const { closeWindow, content } = GlobalState();
+  const { closeSettings, content, window } = GlobalState();
 
   const controls: {
     id: number;
@@ -14,11 +14,15 @@ export default function Window() {
       id: 0,
       background: "#fe5f57",
       label: "close",
-      onClick: () => closeWindow(),
+      onClick: () => {
+        if (window.settings) {
+          closeSettings();
+        } 
+      },
     },
     {
       id: 1,
-      background: "#ffbc2e",
+      background: "#ffbd2e47",
       label: "minimize",
       onClick: () => null,
     },
@@ -33,7 +37,7 @@ export default function Window() {
   return (
     <>
       <motion.main
-        drag
+        drag={window.canvas ? false : true}
         dragConstraints={{
           left: -Infinity,
           right: Infinity,
@@ -48,8 +52,11 @@ export default function Window() {
             {controls.map((e) => {
               return (
                 <li
-                  style={{ backgroundColor: e.background }}
                   key={e.id}
+                  style={{
+                    backgroundColor: e.background,
+                    cursor: e.id !== 1 ? "pointer" : "auto",
+                  }}
                   onClick={() => e.onClick()}
                 />
               );

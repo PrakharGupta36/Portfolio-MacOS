@@ -4,7 +4,7 @@ import "./styles/style.css";
 import { createGlobalStyle } from "styled-components";
 import Animated from "./utils/Animated";
 import Window from "./components/Window";
-import { GlobalState } from "./hooks/State";
+import { GlobalState, LocalState } from "./hooks/State";
 
 interface StyledHTMLProps {
   imageUrl: string;
@@ -21,7 +21,10 @@ const GlobalStyles = createGlobalStyle<StyledHTMLProps>`
 `;
 
 export default function MacOS() {
-  const { window, backgroundImage } = GlobalState();
+  const { window } = GlobalState();
+  const { backgroundImage } = LocalState();
+
+  console.log(window);
 
   return (
     <>
@@ -30,7 +33,7 @@ export default function MacOS() {
       <Navbar />
       <Dock />
 
-      {window && <Window />}
+      {window.settings && <Window />}
     </>
   );
 }

@@ -1,8 +1,37 @@
+import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import Mockup from "./components/Mockup";
+import Wallpaper from "../pages/Wallpapers";
+import About from "../pages/About";
 
 export default function Settings() {
+  const [options, setOptions] = useState<
+    { id: number; label: string; active: boolean }[]
+  >([
+    {
+      id: 1,
+      label: "Wallpaper",
+      active: true,
+    },
+    {
+      id: 2,
+      label: "About",
+      active: false,
+    },
+  ]);
+
+  const updateState = (id: number) => {
+    setOptions((prevState) => {
+      const newState = prevState.map((obj) => {
+        if (obj.id === id) {
+          return { ...obj, active: true };
+        }
+        return { ...obj, active: false };
+      });
+      return newState;
+    });
+  };
+
   return (
     <>
       <section className='settings'>
@@ -16,21 +45,27 @@ export default function Settings() {
               <FaUserCircle size={50} />
             </div>
             <div className='inner'>
-              <p> User </p>
+              <p> Prakhar Gupta </p>
               <p> Apple ID </p>
             </div>
           </div>
           <div className='settings-options'>
             <ul>
-              <li> Dock </li>
-              {Array.from({ length: 20 }, (_, i) => i + 1).map((e) => {
-                return <li key={e}> Wallpaper </li>;
-              })}
+              {options.map((e) => (
+                <li
+                  key={e.id}
+                  onClick={() => updateState(e.id)}
+                  className={e.active ? "active" : ""}
+                >
+                  {e.label}
+                </li>
+              ))}
             </ul>
           </div>
         </section>
         <section className='grid-2'>
-          <Mockup />
+          {options[0].active && <Wallpaper />}
+          {options[1].active && <About />}
         </section>
       </section>
     </>
