@@ -1,17 +1,24 @@
 import { ReactElement } from "react";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import Settings from "../apps/settings/Settings";
+import Showcase from "../apps/Showcase";
 
-interface WindowState {
-  settings: boolean;
-  canvas: boolean;
+interface App {
+  isOpen: boolean;
+  content: ReactElement;
 }
 
+export interface WindowState {
+  settings: App;
+  showcase: App;
+}
+
+export type WindowKey = keyof WindowState;
 interface GlobalState {
   window: WindowState;
-  openSettings: (element?: ReactElement) => void;
-  closeSettings: () => void;
-  content: ReactElement;
+  open: (key: WindowKey) => void;
+  close: (key: WindowKey) => void;
 }
 
 interface LocalState {
@@ -19,18 +26,37 @@ interface LocalState {
   setBackgroundImage: (img: string) => void;
 }
 
-export const GlobalState = create<GlobalState>()((set) => ({
-  window: { settings: false, canvas: false },
-  openSettings: (element?: ReactElement) =>
+export const GlobalState = create<GlobalState>((set) => ({
+  window: {
+    settings: {
+      isOpen: false,
+      content: <Settings />,
+    },
+    showcase: {
+      isOpen: false,
+      content: <Showcase />,
+    },
+  },
+  open: (key: WindowKey) =>
     set((state) => ({
-      content: element || <section>Page in construction</section>,
-      window: { ...state.window, settings: true },
+      window: {
+        ...state.window,
+        [key]: {
+          ...state.window[key],
+          isOpen: true,
+        },
+      },
     })),
-  closeSettings: () =>
+  close: (key: WindowKey) =>
     set((state) => ({
-      window: { ...state.window, settings: false },
+      window: {
+        ...state.window,
+        [key]: {
+          ...state.window[key],
+          isOpen: false,
+        },
+      },
     })),
-  content: <section key='default-content'>Default content</section>,
 }));
 
 const localStatePersist = persist<LocalState>(

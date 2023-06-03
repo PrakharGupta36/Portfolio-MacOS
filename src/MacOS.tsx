@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import "./styles/style.css";
 import { createGlobalStyle } from "styled-components";
 import Animated from "./utils/Animated";
-import Window from "./components/Window";
 import { GlobalState, LocalState } from "./hooks/State";
+import Settings from "./components/SettingsWindow";
+import Canvas from "./components/ShowcaseWindow";
 
 interface StyledHTMLProps {
   imageUrl: string;
@@ -33,7 +34,8 @@ export default function MacOS() {
       <Navbar />
       <Dock />
 
-      {window.settings && <Window />}
+      {window.settings.isOpen && <Settings />}
+      {window.showcase.isOpen && <Canvas />}
     </>
   );
 }
