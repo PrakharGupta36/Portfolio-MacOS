@@ -8,8 +8,11 @@ export default function ShowcaseWindow() {
   function App() {
     return (
       <>
-        <Controls onControlClick={() => close("showcase")} />
-        {window.showcase.content}
+        <Controls
+          onMinimize={() => console.log("Building..")}
+          onControlClick={() => close("news")}
+        />
+        {window.news.content}
       </>
     );
   }

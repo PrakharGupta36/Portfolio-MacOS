@@ -8,7 +8,10 @@ export default function SettingsWindow() {
   function App() {
     return (
       <>
-        <Controls onControlClick={() => close("settings")} />
+        <Controls
+          onMinimize={() => console.log("Building..")}
+          onControlClick={() => close("settings")}
+        />
         {window.settings.content}
       </>
     );

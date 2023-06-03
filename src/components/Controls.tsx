@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 
 interface ControlsProps {
   onControlClick: () => void;
+  onMinimize: () => void;
 }
 
-const Controls: React.FC<ControlsProps> = ({ onControlClick }) => {
+const Controls: React.FC<ControlsProps> = ({ onControlClick, onMinimize }) => {
   const controls = [
     {
       id: 0,
@@ -14,13 +15,13 @@ const Controls: React.FC<ControlsProps> = ({ onControlClick }) => {
     },
     {
       id: 1,
-      background: "#ffbd2e47",
+      background: "#ffbd2e53",
       label: "minimize",
-      onClick: () => null,
+      onClick: () => onMinimize(),
     },
     {
       id: 2,
-      background: "#28c840",
+      background: "#28c84045",
       label: "maximize",
       onClick: () => null,
     },
@@ -34,7 +35,7 @@ const Controls: React.FC<ControlsProps> = ({ onControlClick }) => {
             key={control.id}
             style={{
               backgroundColor: control.background,
-              cursor: control.id !== 1 ? "pointer" : "auto",
+              cursor: control.id === 0 ? "pointer" : "auto",
             }}
             onClick={() => control.onClick()}
           />

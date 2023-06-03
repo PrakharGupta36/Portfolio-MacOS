@@ -11,7 +11,7 @@ interface App {
 
 export interface WindowState {
   settings: App;
-  showcase: App;
+  news: App;
 }
 
 export type WindowKey = keyof WindowState;
@@ -32,7 +32,7 @@ export const GlobalState = create<GlobalState>((set) => ({
       isOpen: false,
       content: <Settings />,
     },
-    showcase: {
+    news: {
       isOpen: false,
       content: <Showcase />,
     },

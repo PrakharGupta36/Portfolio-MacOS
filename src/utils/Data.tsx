@@ -12,7 +12,7 @@ export const dockData: DockItem[] = [
   },
   {
     id: 1,
-    label: "showcase",
-    img: "/icons/pen.png",
+    label: "news",
+    img: "/icons/news.png",
   },
 ];

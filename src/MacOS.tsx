@@ -4,9 +4,8 @@ import "./styles/style.css";
 import { createGlobalStyle } from "styled-components";
 import Animated from "./utils/Animated";
 import { GlobalState, LocalState } from "./hooks/State";
-import Settings from "./components/SettingsWindow";
-import Canvas from "./components/ShowcaseWindow";
-
+import ShowcaseWindow from "./components/ShowcaseWindow";
+import SettingsWindow from "./components/SettingsWindow";
 interface StyledHTMLProps {
   imageUrl: string;
 }
@@ -25,8 +24,6 @@ export default function MacOS() {
   const { window } = GlobalState();
   const { backgroundImage } = LocalState();
 
-  console.log(window);
-
   return (
     <>
       <Animated />
@@ -34,8 +31,8 @@ export default function MacOS() {
       <Navbar />
       <Dock />
 
-      {window.settings.isOpen && <Settings />}
-      {window.showcase.isOpen && <Canvas />}
+      {window.settings.isOpen && <SettingsWindow />}
+      { window.news.isOpen && <ShowcaseWindow />}
     </>
   );
 }

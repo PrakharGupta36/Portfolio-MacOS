@@ -6,6 +6,7 @@
   padding: 0;
   font-family: "Poppins", SF Pro, monospace;
   -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -249,8 +250,9 @@ nav {
   color: white;
   position: absolute;
   top: 100px;
-  left: 200px;
+  left: 300px;
   padding: 0.5rem 0.25rem;
+  outline: none;
 
   .controls {
     width: calc(800px - 32px);
@@ -520,13 +522,91 @@ nav {
     }
   }
 
-  .showcase {
-    display: grid;
-    place-items: center;
-    height: 500px;
-    background-color: white;
+  .news {
     color: black;
     border-radius: 0 0 0.35rem 0.35rem;
+    height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    @include scroll;
+    background: linear-gradient(45deg, #cdc6be, #e9be672e),
+      url(https://grainy-gradients.vercel.app/noise.svg);
+    padding-bottom: 2rem;
+
+    .nav {
+      ul {
+        display: flex;
+        list-style-type: none;
+        gap: 1rem;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+      }
+    }
+
+    .content {
+      display: grid;
+      gap: 3rem;
+      position: relative;
+      top: 50px;
+      left: 28px;
+      overflow: hidden;
+
+      .grid-1,
+      .grid-2,
+      .grid-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border: 1px solid black;
+        gap: 1rem;
+        padding: 1rem;
+        width: 700px;
+        height: 350px;
+        padding-bottom: 0;
+
+        h1 {
+          line-height: 2.5rem;
+          font-size: 1.7rem;
+        }
+
+        p {
+          line-height: 2rem;
+        }
+
+        button {
+          padding: 0.45rem 2rem;
+          background-color: black;
+          color: white;
+          border: none;
+          margin: 1rem;
+          border-radius: 0.25rem;
+          justify-self: flex-start;
+        }
+      }
+
+      .grid-3 {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        .images {
+          display: flex;
+          overflow-x: scroll;
+          @include scroll;
+          align-items: center;
+          width: 600px;
+
+          justify-content: flex-start;
+          gap: 2rem;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
   }
 }
 

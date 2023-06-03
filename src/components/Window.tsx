@@ -1,22 +1,36 @@
 import { ReactElement, useState } from "react";
-import Draggable, { DraggableEventHandler } from "react-draggable";
+import { motion } from "framer-motion";
 
 export default function Window({ children }: { children: ReactElement }) {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  const handleDragStart: DraggableEventHandler = () => {
-    setIsDragging(true);
+  const handleFocus = () => {
+    setIsFocused(true);
   };
 
-  const handleDragStop: DraggableEventHandler = () => {
-    setIsDragging(false);
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   return (
-    <Draggable onStart={handleDragStart} onStop={handleDragStop}>
-      <div className={`window`} style={{ zIndex: isDragging ? 3 : 1 }}>
-        {children}
-      </div>
-    </Draggable>
+    <motion.main
+      drag
+      dragConstraints={{
+        left: -Infinity,
+        right: Infinity,
+        top: -Infinity,
+        bottom: Infinity,
+      }}
+      dragMomentum={false}
+      className='window'
+      style={{
+        zIndex: isFocused ? 3 : 1,
+      }}
+      tabIndex={0}
+      onFocusCapture={handleFocus}
+      onBlur={handleBlur}
+    >
+      {children}
+    </motion.main>
   );
 }
