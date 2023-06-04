@@ -341,11 +341,26 @@ nav {
         @include flex-center-center;
         justify-content: start;
         gap: 1rem;
+        cursor: pointer;
+
+        padding: 0.35rem 1rem;
+        padding-left: 0.5rem;
         .icon {
           position: relative;
           top: 3.5px;
         }
+
+        .inner {
+          font-size: 0.8rem;
+        }
+
         margin-bottom: 1.5rem;
+      }
+
+      .active {
+        background-color: #125eaf;
+
+        border-radius: 0.35rem;
       }
 
       .settings-options {
@@ -519,18 +534,174 @@ nav {
           }
         }
       }
+      .apple_id {
+        .nav {
+          padding: 1rem 1.5rem 1rem 1.5rem;
+          background: rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-radius: 0;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          ul {
+            display: flex;
+            list-style-type: none;
+            justify-content: space-between;
+
+            a {
+              color: white;
+            }
+          }
+        }
+        .content {
+          display: grid;
+          place-items: center;
+          overflow-y: scroll;
+          @include scroll;
+          overflow-x: hidden;
+          height: 500px;
+          scroll-snap-type: y mandatory;
+
+          .grids {
+            display: grid;
+            place-items: center;
+            height: 500px;
+          }
+
+          .grid-1,
+          .grid-2,
+          .grid-3 {
+            text-align: center;
+            width: 100%;
+            scroll-snap-align: center;
+
+            h1 {
+              font-size: 2rem;
+            }
+          }
+
+          .grid-1 {
+            place-items: start;
+            text-align: justify;
+            margin-top: 4rem;
+            margin-left: 3rem;
+            height: max-content;
+            margin-bottom: 5rem;
+
+            h1 {
+              margin-bottom: 1rem;
+            }
+
+            p {
+              font-size: 1rem;
+              width: 90%;
+              margin-top: 2rem;
+              line-height: 2rem;
+            }
+          }
+
+          .grid-2 {
+            height: max-content;
+            margin-bottom: 5rem;
+            .inner {
+              display: grid;
+              place-items: start;
+              gap: 5rem;
+              .inner {
+                gap: 0.5rem;
+                text-align: left;
+
+                p {
+                  opacity: 0.5;
+                  font-size: 0.85rem;
+                }
+              }
+              .images {
+                display: flex;
+                justify-content: flex-start;
+                width: 500px;
+                align-items: center;
+                overflow-x: scroll;
+                gap: 4rem;
+                scroll-snap-type: x proximity;
+
+                .card {
+                  display: grid;
+                  gap: 1rem;
+                  scroll-snap-align: center;
+                  background-color: white;
+                  text-align: left;
+
+                  a {
+                    color: black;
+                    padding: 2rem 1rem;
+                    padding-top: 0.85rem;
+                    width: 50%;
+                    white-space: nowrap;
+                  }
+                  img {
+                    width: 350px;
+                    height: 200px;
+                  }
+                }
+              }
+            }
+          }
+
+          .grid-3 {
+            place-items: start;
+
+            .inner {
+              display: grid;
+              place-items: start;
+              margin-top: 2rem;
+              margin-left: 2rem;
+
+              p {
+                margin-top: 1rem;
+
+                font-size: 0.9rem;
+                text-align: left;
+                line-height: 1.9rem;
+
+                a {
+                  margin-left: 0.35rem;
+                  margin-right: 0.35rem;
+                  color: blue;
+                }
+              }
+
+              ul {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 2rem;
+                display: flex;
+                gap: 2rem;
+                img {
+                  width: 50px;
+                  background-color: white;
+                  border-radius: 0.25rem;
+                  border-radius: 50%;
+                  height: 50px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
   .news {
     color: black;
     border-radius: 0 0 0.35rem 0.35rem;
+    width: 800px;
     height: 450px;
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-snap-type: y mandatory;
     @include scroll;
-    background: linear-gradient(45deg, #cdc6be, #e9be672e),
+    background: linear-gradient(45deg, #cdc6be, #c2b5a6),
       url(https://grainy-gradients.vercel.app/noise.svg);
     padding-bottom: 2rem;
 
@@ -555,7 +726,8 @@ nav {
 
       .grid-1,
       .grid-2,
-      .grid-3 {
+      .grid-3,
+      .grid-4 {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -594,7 +766,25 @@ nav {
         .images {
           display: flex;
           overflow-x: scroll;
-          @include scroll;
+          // @include scroll;
+
+          &::-webkit-scrollbar {
+            width: 10px;
+            border-radius: 1rem;
+          }
+
+          &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 10px 10px rgb(0, 0, 0);
+            border: solid 5px transparent;
+            border-radius: 1rem;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 10px 10px rgb(255, 255, 255);
+            border: solid 5px transparent;
+            border-radius: 1rem;
+          }
+
           align-items: center;
           width: 600px;
 

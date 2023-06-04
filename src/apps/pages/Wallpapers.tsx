@@ -19,22 +19,6 @@ export default function Wallpaper() {
       id: 4,
       wallpaper: "/wallpapers/04.jpg",
     },
-    {
-      id: 5,
-      wallpaper: "/wallpapers/01.jpg",
-    },
-    {
-      id: 6,
-      wallpaper: "/wallpapers/02.jpg",
-    },
-    {
-      id: 7,
-      wallpaper: "/wallpapers/03.jpg",
-    },
-    {
-      id: 8,
-      wallpaper: "/wallpapers/04.jpg",
-    },
   ];
 
   const { backgroundImage, setBackgroundImage } = LocalState();
@@ -55,6 +39,7 @@ export default function Wallpaper() {
               onClick={() => {
                 if (backgroundImage !== e.wallpaper) {
                   setBackgroundImage(e.wallpaper);
+                  
                 }
               }}
               alt='img'

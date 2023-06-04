@@ -4,7 +4,7 @@ export default function Showcase() {
       <section className='news'>
         <div className='nav'>
           <ul>
-            <li> Apple News+ </li>
+            <li> Dev News+ </li>
             <li> </li>
           </ul>
         </div>
@@ -22,7 +22,15 @@ export default function Showcase() {
               leaving human web developers cast adrift in an era of
               obsolescence.{" "}
             </p>
-            <button> Know More </button>
+            <button>
+              <a
+                href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                target='__blank'
+              >
+                {" "}
+                Know More
+              </a>
+            </button>
           </div>
           <div className='grid grid-2'>
             <h1>
