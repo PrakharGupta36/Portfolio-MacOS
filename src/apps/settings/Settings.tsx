@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import Wallpaper from "../pages/Wallpapers";
@@ -12,7 +12,7 @@ export default function Settings() {
     {
       id: 1,
       label: "Wallpaper",
-      active: true,
+      active: false,
     },
     {
       id: 2,
@@ -43,6 +43,10 @@ export default function Settings() {
       return newState;
     });
   };
+
+  useEffect(() => {
+    setActive(true);
+  }, []);
 
   return (
     <>

@@ -29,7 +29,7 @@ interface LocalState {
 export const GlobalState = create<GlobalState>((set) => ({
   window: {
     settings: {
-      isOpen: false,
+      isOpen: true,
       content: <Settings />,
     },
     news: {

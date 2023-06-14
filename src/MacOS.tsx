@@ -32,7 +32,7 @@ export default function MacOS() {
       <Dock />
 
       {window.settings.isOpen && <SettingsWindow />}
-      { window.news.isOpen && <ShowcaseWindow />}
+      {window.news.isOpen && <ShowcaseWindow />}
     </>
   );
 }
