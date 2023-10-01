@@ -19,6 +19,8 @@ interface GlobalState {
   window: WindowState;
   open: (key: WindowKey) => void;
   close: (key: WindowKey) => void;
+  active: boolean;
+  setActive: (bool: boolean) => void;
 }
 
 interface LocalState {
@@ -57,6 +59,8 @@ export const GlobalState = create<GlobalState>((set) => ({
         },
       },
     })),
+  active: true,
+  setActive: (bool) => set(() => ({ active: bool })),
 }));
 
 const localStatePersist = persist<LocalState>(

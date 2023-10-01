@@ -39,6 +39,7 @@ export default function Wallpaper() {
               onClick={() => {
                 if (backgroundImage !== e.wallpaper) {
                   setBackgroundImage(e.wallpaper);
+
                 }
               }}
               alt='img'

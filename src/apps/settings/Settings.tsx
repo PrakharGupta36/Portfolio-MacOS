@@ -22,31 +22,32 @@ export default function Settings() {
   ]);
 
   const updateState = (id: number) => {
-    setOptions((prevState) => {
-      const newState = prevState.map((obj) => {
-        if (obj.id === id) {
-          return { ...obj, active: true };
-        }
-        return { ...obj, active: false };
-      });
-      return newState;
-    });
+    setOptions((prevState) =>
+      prevState.map((obj) => ({
+        ...obj,
+        active: obj.id === id,
+      }))
+    );
+    setActive(false); // Make sure to set active to false here
   };
 
   const [active, setActive] = useState(false);
 
   const removeState = () => {
-    setOptions((prevState) => {
-      const newState = prevState.map((obj) => {
-        return { ...obj, active: false };
-      });
-      return newState;
-    });
+    setOptions((prevState) =>
+      prevState.map((obj) => ({
+        ...obj,
+        active: false,
+      }))
+    );
+    setActive(true); // Make sure to set active to true here
   };
 
   useEffect(() => {
     setActive(true);
-  }, []);
+  }, [setActive]);
+
+  console.log(active);
 
   return (
     <>

@@ -18,7 +18,7 @@ export default function AppleID() {
       id: 3,
       text: "MacOS Portfolio",
       img: "/projects/04.png",
-      link: "http://localhost:5173/",
+      link: "https://prakhar-gupta-macos.vercel.app/",
     },
     {
       id: 4,
