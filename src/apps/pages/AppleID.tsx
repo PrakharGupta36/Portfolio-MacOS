@@ -10,7 +10,7 @@ export default function AppleID() {
     },
     {
       id: 2,
-      text: "Solar System Viewer",
+      text: "Solar System 3D Viewer",
       img: "/projects/03.png",
       link: "https://r3f-solar-system.vercel.app/",
     },
